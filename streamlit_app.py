@@ -58,6 +58,8 @@ if page == "Home":
 elif page == "Project Overview":
     # Main Title
     st.title("Project Overview")
+    set_video_background("Images/boom.png")
+
 
     # Project Description
     st.write("This project focuses on developing a collaborative and content-based recommender system tailored for a collection of anime titles.")

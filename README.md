@@ -18,6 +18,14 @@ EDA
 Group Info
 Predictions
 
+## Imports used
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import pickle
+import gzip
+import base64
+
 ## Further Reading
 
 Below is list of resources we used in this application:
@@ -27,3 +35,10 @@ Below is list of resources we used in this application:
 4. requirements.txt
 5. stream_app.py
 6. images
+
+## Group Members 
+1. Mpho
+2. Thando
+3. Thato
+4. Thabang
+5. Lebogang

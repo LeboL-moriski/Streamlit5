@@ -52,7 +52,7 @@ st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Home", "EDA", "Group Info", "Predictions"])
 
 if page == "Home":
-    st.write("Welcome to the Recommender System App!")
+    st.title("Welcome to the Recommender System App!")
     set_video_background("Images/solo_leveling.png")
 
 elif page == "Project Overview":

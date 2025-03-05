@@ -49,10 +49,10 @@ def collaborative_filtering(user_id, anime_df, svd_model):
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "EDA", "Group Info", "Predictions"])
+page = st.sidebar.radio("Go to", ["Home","Project Overview", "EDA", "Group Info", "Predictions"])
 
 if page == "Home":
-    st.write("Welcome to the Recommender System App!")
+    st.title("Welcome to the Recommender System App!")
     set_video_background("Images/solo_leveling.png")
 
 elif page == "Project Overview":

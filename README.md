@@ -1,24 +1,29 @@
 # Recommender System App
-```
-```
 
-Description of the app ...
+Description of App: This Streamlit app leverages a recommender system to provide personalized suggestions to users based on their preferences or historical data. The app offers an intuitive interface, making it accessible for both technical and non-technical users to explore recommendation capabilities.
 
 ## Demo App
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://app-starter-kit.streamlit.app/)
+[![Streamlit App]([https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://app-starter-kit.streamlit.app/](https://app5-twlalgbqmu4g6udhtjwwoe.streamlit.app/))
 
 ## GitHub Codespaces
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/app-starter-kit?quickstart=1)
+[![Open in GitHub Codespaces](https://github.com/LeboL-moriski/Streamlit5)
 
 ## Section Heading
 
-This is filler text, please replace this with text for this section.
+Home
+Project Overview
+EDA
+Group Info
+Predictions
 
 ## Further Reading
 
-This is filler text, please replace this with a explanatory text about further relevant resources for this repo
-- Resource 1
-- Resource 2
-- Resource 3
+Below is list of resources we used in this application:
+1. Anime.csv
+2. train.csv
+3. svd_model.pkl.gz
+4. requirements.txt
+5. stream_app.py
+6. images

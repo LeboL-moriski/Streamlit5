@@ -29,19 +29,19 @@ def set_video_background(video_file):
 
 # Load your preprocessed data and necessary components
 anime_content = pd.read_csv('anime.csv') 
-train_df = pd.read_csv('train.csv')
+anime_content['name'] = anime_content['name'].astype(str)
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Project Overview", "EDA", "Group Info", "Predictions"])
+page = st.sidebar.radio("Go to", ["Home", "EDA", "Project Overview", "Group Info", "Predictions"])
 
 if page == "Home":
     set_video_background("Images/solo_leveling.jpeg")
     st.title("Welcome to the Recommender System App!")
 
 elif page == "Project Overview":
-    # Main Title
     set_video_background("Images/BG3.jpg")
+    # Main Title
     st.title("Project Overview")
 
     # Project Description
@@ -58,14 +58,7 @@ elif page == "Project Overview":
 
 elif page == "EDA":
     set_video_background("Images/BG3.jpg")
-
     st.title("Exploratory Data Analysis")
-    # Exploding genres into individual rows (Assumes genre is a comma-separated string)
-    anime_exploded = anime_content.copy()
-    anime_exploded = anime_exploded.dropna(subset=['genre', 'rating'])  # Drop missing values
-    anime_exploded['genre'] = anime_exploded['genre'].str.split(', ')  # Split genre into lists
-    anime_exploded = anime_exploded.explode('genre')  # Expand into multiple rows
-
 
     # Display the dataset (Optional)
     st.subheader("Dataset Preview")
@@ -78,6 +71,11 @@ elif page == "EDA":
     # Genre vs Rating Analysis
     st.subheader("Top 10 Genres by Average Rating")
 
+    # Exploding genres into individual rows (Assumes genre is a comma-separated string)
+    anime_exploded = anime_content.copy()
+    anime_exploded = anime_exploded.dropna(subset=['genre', 'rating'])  # Drop missing values
+    anime_exploded['genre'] = anime_exploded['genre'].str.split(', ')  # Split genre into lists
+    anime_exploded = anime_exploded.explode('genre')  # Expand into multiple rows
 
     # Compute average rating per genre
     genre_v_rating = anime_exploded.groupby('genre', as_index=False)['rating'].mean()
@@ -103,7 +101,7 @@ elif page == "EDA":
 
     # Customize layout
     fig.update_traces(textposition='outside')
-    fig.update_layout(yaxis=dict(gridcolor='lightgray', griddash='dash'), width=1000, height=600,showlegend=False)
+    fig.update_layout(yaxis=dict(gridcolor='lightgray', griddash='dash'), width=1000, height=600)
 
     # Display the graph in Streamlit
     st.plotly_chart(fig, use_container_width=True)
@@ -127,7 +125,7 @@ elif page == "EDA":
     )
 
     fig2.update_traces(textposition='outside')
-    fig2.update_layout(yaxis=dict(gridcolor='lightgray', griddash='dash'), width=1200, height=600,showlegend=False)
+    fig2.update_layout(yaxis=dict(gridcolor='lightgray', griddash='dash'), width=1200, height=600)
 
     # Display the second graph in Streamlit
     st.plotly_chart(fig2, use_container_width=True)
@@ -144,8 +142,8 @@ elif page == "Group Info":
 # Predictions page content
 elif page == "Predictions":
     set_video_background("Images/Predic.png")
-
-
+    train_df = pd.read_csv("train.csv")
+        
     def load_model(file_path):
         with gzip.open(file_path, 'rb') as f:
             model = pickle.load(f)
@@ -243,6 +241,7 @@ elif page == "Predictions":
                     recommended_df = recommended_df.head(N)  # Show general recommendations if no genre match
                 else:
                     recommended_df = genre_filtered.head(N)  # Get top N recommendations that contain the genre
+                    recommended_df['name'] = recommended_df['name'].astype(str)
                     st.write(f"Here's the top {N} anime based on {input_anime} filtered by {selected_genre}:")
                     st.dataframe(recommended_df[['name', 'genre', 'type', 'rating']])
                     return
@@ -252,6 +251,7 @@ elif page == "Predictions":
             if not recommended_df.empty:
                 recommended_df = recommended_df.head(N)
                 recommended_df = recommended_df.sort_values(by='rating', ascending=False)
+                recommended_df['name'] = recommended_df['name'].astype(str)
 
                 st.write(f"Here's the top {N} anime based on {input_anime}:")
                 st.dataframe(recommended_df[['name', 'genre', 'type', 'rating']])
